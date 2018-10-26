@@ -1,51 +1,97 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>NYT Article Search</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="assets/nyt.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
-    </head>
-    <body>
-            <div class="jumbotron">
-                    <h1 class="display-center">New York Times Search</h1>
-            </div>
-            <div class="card">
-                    <div class="card-header">
-                      Search Parameters
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="FormControlInput1">Search Term* :</label>
-                                <input class="form-control" id="FormControlInput1" placeholder="Keyword">
-                            </div>
-                            <div class="form-group">
-                                <label for="FormControlInput2">Number of Records to Retrieve* :</label>
-                                <input class="form-control" id="FormControlInput2" placeholder="1">
-                            </div>
-                            <div class="form-group">
-                                <label for="FormControlInput3">Start Year :</label>
-                                <input multiple class="form-control" id="FormControlInput3" placeholder="0000">
-                            </div>
-                            <div class="form-group">
-                                <label for="FormControlInput4">End Year :</label>
-                                <input multiple class="form-control" id="FormControlInput4" placeholder="0000">
-                            </div>
-                        </form>
-                    </div>
-            </div>
-            <input class="btn btn-light btn-outline-dark" type="submit" value="Submit">
-            <input class="btn btn-light btn-outline-dark" type="reset" value="Clear Results">
-            <div class="card">
-                    <div class="card-header">
-                      Top Articles
-                    </div>
-                    <div class="card-body">
-                      <!-- AJAX call goes here? -->>
-                    </div>
-            </div>
-        
-    </body>
+   <head>
+       <meta charset="UTF-8">
+       <title>NYT Article Search</title>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+       <link rel="stylesheet" type="text/css" href="assets/nyt.css">
+   </head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script type="text/javascript">
+     // The below code fills in the first row of the table
+
+function execute(){
+
+
+
+
+
+ $('#submit').on('click', function(){
+
+ var q = $('#FormControlInput1').val();
+ var numRecord = $('#FormControlInput2').val();
+ var start = $('#FormControlInput3').val();
+ var end = $('FormControlInput4').val();
+
+ var key= '2652de47ca4d4065b48b7a4e4a08923d';
+ var searchCriteria = 'q='+ q;
+//   (start) ? searchCriteria = 'begin_date' + start: searchCriteria;
+//   (end) ? searchCriteria = 'end_date' + end: searchCriteria;
+
+ var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key='+key+'&'+searchCriteria;
+
+
+   $.ajax({
+       url: url,
+       method: "GET"
+     }).then(function(response) {
+         console.log ("url" + response.response.docs[0].web_url);
+         console.log ("main" + response.response.docs[0].headline.main);
+         console.log ("snippet" + response.response.docs[0].snippet);
+
+         $(".card-body").text(response.response.docs[0].headline.main);
+
+       // Create and save a reference to new empty table row
+
+
+
+});
+ });
+}
+$( document ).ready(execute);
+
+
+
+  </script>
+   <body>
+           <div class="jumbotron">
+                   <h1 class="display-center">New York Times Search</h1>
+           </div>
+           <div class="card">
+                   <div class="card-header">
+                     Search Parameters
+                   </div>
+                   <div class="card-body">
+                       <form>
+                           <div class="form-group">
+                               <label for="FormControlInput1">Search Term* :</label>
+                               <input class="form-control" id="FormControlInput1" placeholder="Keyword">
+                           </div>
+                           <div class="form-group">
+                               <label for="FormControlInput2">Number of Records to Retrieve* :</label>
+                               <input class="form-control" id="FormControlInput2" placeholder="1">
+                           </div>
+                           <div class="form-group">
+                               <label for="FormControlInput3">Start Year :</label>
+                               <input multiple class="form-control" id="FormControlInput3" placeholder="0000">
+                           </div>
+                           <div class="form-group">
+                               <label for="FormControlInput4">End Year :</label>
+                               <input multiple class="form-control" id="FormControlInput4" placeholder="0000">
+                           </div>
+                       </form>
+                   </div>
+           </div>
+           <input class="btn btn-light btn-outline-dark" type="submit" value="Submit" id="submit">
+           <input class="btn btn-light btn-outline-dark" type="reset" value="Clear Results">
+           <div class="card">
+                   <div class="card-header">
+                     Top Articles
+                   </div>
+                   <div class="card-body">
+
+                   </div>
+           </div>
+
+   </body>
 </html>

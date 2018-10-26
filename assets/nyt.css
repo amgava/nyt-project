@@ -2,4 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color:#fff;
+    background-color: #06b;
+}
+
+.btn{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
