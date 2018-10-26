@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>NYT Article Search</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    </head>
+    <body>
+            <div class="jumbotron">
+                    <h1 class="display-center">New York Times Search</h1>
+            </div>
+            <div class="card">
+                    <div class="card-header">
+                      Search Parameters
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="FormControlInput1">Search Term*</label>
+                                <input class="form-control" id="FormControlInput1" placeholder="Keyword">
+                            </div>
+                            <div class="form-group">
+                                <label for="FormControlInput2">Number of Records to Retrieve*</label>
+                                <input class="form-control" id="FormControlInput2" placeholder="1">
+                            </div>
+                            <div class="form-group">
+                                <label for="FormControlInput3">Start Year</label>
+                                <input multiple class="form-control" id="FormControlInput3" placeholder="0000">
+                            </div>
+                            <div class="form-group">
+                                <label for="FormControlInput4">End Year</label>
+                                <input multiple class="form-control" id="FormControlInput4" placeholder="0000">
+                            </div>
+                        </form>
+                    </div>
+            </div>
+            <a class="btn btn-outline-dark" href="#" role="button">Search</a>
+            <a class="btn btn-outline-dark" href="#" role="button">Clear Results</a>
+            <div class="card">
+                    <div class="card-header">
+                      Top Articles
+                    </div>
+                    <div class="card-body">
+                      <!-- AJAX call goes here? -->>
+                    </div>
+            </div>
+        
+    </body>
+</html>
